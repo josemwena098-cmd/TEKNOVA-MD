@@ -1,6 +1,35 @@
-const vm = require('vm');
-try {
-    const _code = Buffer.from('Y29uc3QgeyBjbWQsIGNvbW1hbmRzIH0gPSByZXF1aXJlKCdLi4vY29tbWFuZCcpO1xuY29uc3QgeyBnZXRQcmVmaXggfSA9IHJlcXVpcmUoJy4uL2xpYi9wcmVmaXgnKTtcbmNvbnN0IGNvbmZpZyA9IHJlcXVpcmUoJy4uL2NvbmZpZycpO1xuY29uc3QgbW9tZW50ID0gcmVxdWlyZSgnbW9tZW50LXRpbWV6b25lJyk7XG5cbmNtZCh7XG4gIHBhdHRlcm46ICdtZW51MycsXG4gIGFsaWFzOiBbJ21lbnUzJywgJ2h5YnJpZGNtZW51J10sXG4gIGRlc2M6ICdDbGFzc2ljIG1lbnUgc3R5bGUgd2l0aCBsaXN0ICsgIGltYWdlJyxcbiAgIGNhdGVnb3J5OiAnbWVudScsXG4gICByZWFjdDogJ+CfJyw+XG4gIGZpbGVuYW1lOiBfX2ZpbGVuYW1lXG59LCBhc3luYyAoc29uZywgTWVLBm0sIG0sIHsgZnJvbSwgc2VuZGVyLCBpc0dyb3VwLCByZXBseSB9KSA9PiB7XG4gIHRyeSB7XG4gICAgY29uc3QgcHJlZml4ID0gZ2V0UHJlZml4KCk7XG4gICAgY29uc3QgVGltZSA9IG1vbWVudCgpLnR6KHRpbWV6b25lICE9ICdBZnJpY2EvTkFJQk9SSS1OQUlST0JJJyk7XG4gICAgY29uc3QgZGF0ZSA9IG1vbWVudC5mb3JtYXQoJ0RDL01NL1k/JCcpO1xuXG4gICAgLy8gRGF0YSBmb3JtYXRzIGFuZCBiZXR0ZXIgdGV4dFxuICAgIGNvbnN0IG1lbnVIZWFkZXIgPSBgYCDtcblxuICAgIC8vIGluIEdyb3VwcyBzZW5kIHRleHRcbiAgICBpZiAoaXNHcm91cCkge1xuICAgICAgICBjb25zdCB0ZXh0TWVudSA9IG1lbnVIZWFkZXIgKyAnXG4gICAgICAgIGF3YWl0IGNvbm4uc2VuZE1lc3NhZ2UoZnJvbSwgeyB0ZXh0OiB0ZXh0TWVudCB9LCB7IHF1b3RlZDogbWVrcyB9KTtcbiAgICAgICAgcmV0dXJuO1xuICAgIH1cblxuICAgIC8vIERNXDogTG9naWMgZm9yIERNIENPTlRFTlQgb2YgdGhlIG1lbnVcbiAgICB0cnkgeyBcbiAgICAgICAgY29uc3QgbGlzdFJvd3MgPSBbXS5cbiAgICAgICAgT2JqZWN0LmtleXMoY2F0ZWdvcnlNYXApLmZvckVhY2goKGVudHJ5KSA9PiB7XG4gICAgICAgICAgICBsaXN0Um93cy5wdXNoKHtcbiAgICAgICAgICAgICAgICB0aXRsZTogY2F0ZWdvcnlNYXBbZW50cnldLFxuICAgICAgICAgICAgICAgIHJvd0lkOiBgJHt0aGlzLm5hbWV9YGBcbiAgICAgICAgICAgIH0pO1xuICAgICAgICB9KTtcbiAgICAgICAgY29uc3QgbGlzdE1lc3NhZ2UgPSB7IHRleHQ6IG1lbnVIZWFkZXIgLCBmb290ZXI6ICf7fScgLCBidXR0b25UZXh0OiAnT3BlbiBNZW51Jywgc2VjdGlvbnM6IFt7IHRpdGxlOiAnTllYLUhEIF0sIH0sIGhlaGV0VHlwZTogMSwge1xuICAgICAgICBjb250ZXh0SW5mbzogeyBtZW50aW9uZWRKaWQ6IFtzZW5kZXJdIH1cbiAgICAgICAgfTtcbiAgICAgICAgYXdhaXQgY29ubi5zZW5kTWVzc2FnZShmcm9tLCBsaXN0TWVzc2FnZSk7XG4gICAgfSBjYXRjaCAoZSkge1xuICAgICAgICBjb25zb2xlLmVycm9yKCdNZW51MyBFcnJvcicsIGUpO1xuICAgICAgICByZXBseSgn4pSAQmV0IEVycm9yJyk7XG4gICAgfVxuICB9KTtcblxu','base64');
-    const _src = Buffer.from(_code).toString('utf8');
-    try { eval(_src); } catch (e) { console.error('Obfuscated menu3 execution error:', e); }
-} catch (e) { console.error('menu3 wrapper error:', e); }
+const { cmd } = require('../command');
+const { getPrefix } = require('../lib/prefix');
+const config = require('../config');
+const moment = require('moment-timezone');
+
+cmd({
+    pattern: 'menu3',
+    alias: ['menu3', 'hmenu'],
+    desc: 'Show list menu',
+    category: 'menu',
+    react: '',
+    filename: __filename
+}, async (conn, mek, m, { from, sender, isGroup, reply }) => {
+    try {
+        const prefix = getPrefix();
+        const caption = **
+**  NYX MD Bot Menu List
+** Owner: NYX Development
+** Prefix: ${prefix}
+** Version: 1.0.0
+**
+
+Select a category to view commands.;
+
+        if (isGroup) {
+            await conn.sendMessage(from, { text: caption }, { quoted: mek });
+            return;
+        }
+
+        await conn.sendMessage(from, { text: caption }, { quoted: mek });
+    } catch (error) {
+        console.error('Menu3 Error:', error);
+        reply(' An error occurred while displaying the menu.');
+    }
+});

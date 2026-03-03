@@ -1,6 +1,30 @@
-const vm = require('vm');
-try {
-    const _code = Buffer.from('Y29uc3QgY29uZmlnID0gcmVxdWlyZSgnLi4vY29uZmlnJyk7XG5jb25zdCBtb21lbnQgPSByZXF1aXJlKCdtb21lbnQtdGltZXpvbmUnKTtcbmNvbnN0IHsgY21kIH0gPSByZXF1aXJlKCdLi4vY29tbWFuZCcpO1xuY29uc3QgeyBydW50aW1lIH0gPSByZXF1aXJlKCdLi4vbGliL2Z1bmN0aW9ucycpO1xuY29uc3QgeyBnZXRQcmVmaXggfSA9IHJlcXVpcmUoJy4uL2xpYi9wcmVmaXgnKTtcblxuY21kKHtcbiAgICBwYXR0ZXJuOiAnbWVudTInLFxuICAgIGFsaWFzOiBbJ3BhbmVsJywgJ21lbnVzJ10sXG4gICAgZGVzYzogJ1Nob3cgYnV0dG9uIG1lbnUnLFxuICAgIGNhdGVnb3J5OiAnbWVudScsXG4gICAgcmVhY3Q6ICf8Jyw,XG4gICAgZmlsZW5hbWU6IGBfX2ZpbGVuYW1lYGBcbn0sXG4gICAgYXN5bmMgKGNvbm4sIG1laywgbSwgeyBmcm9tLCBzZW5kZXIsIGlzR3JvdXAsIHJlcGx5IH0pID0+IHtcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICAgIGNvbnN0IHByZWZpeCA9IGdldFByZWZpeCgpO1xuICAgICAgICAgICAgY29uc3QgdGltZSA9IG1vbWVudCgpLnR6KGVuYyhjb25maWcuVElNRU9ORSB8fCAnQWZyaWNhL05haWJvcmlfTmFpcm9iaWUnKS5mb3JtYXQoJ0hIPO1xuICAgICAgICAgICAgY29uc3QgZGF0ZSA9IG1vbWVudC5mb3JtYXQoJ0REL01NIFxcLycpO1xuXG4gICAgICAgICAgICBjb25zdCBjYXB0aW9uID0gYEJTMfQ7XG4gICAgICAgICAgICAvLyBuZWlnaGJvbnMgdG9vbGJveFxuICAgICAgICAgICAgY29uc3QgYnV0dG9ucyA9IFt7IGJ1dHRvbklkOiBgJHt0aW1lfW1gLCBidXR0b25UZXh0OiB7IGRpc3BsYXRUZXh0OiAn4pSAICd9LCAgdHlwZTogMSB9XTtcblxuICAgICAgICAgICAgaWYgKGlzR3JvdXApIHtcbiAgICAgICAgICAgICAgICBjb25zdCB0ZXh0TWVudSA9IGNhcHRpb24gKyBgXG5cbiAgICAgICAgICAgICAgICBhd2FpdCBjb25uLnNlbmRNZXNzYWdlKGZyb20sIHsgdGV4dDogdGV4dE1lbnUgfSwgeyBxdW90ZWQ6IG1layIHKTtcbiAgICAgICAgICAgICAgICByZXR1cm47XG4gICAgICAgICAgICB9XG5cbiAgICAgICAgICAgIHRyeSB7XG4gICAgICAgICAgICAgICAgYXdhaXQgY29ubi5zZW5kTWVzc2FnZShmcm9tLCB7XG4gICAgICAgICAgICAgICAgICB2aWRlbyA6IHsgdXJsOiAnSFRUUFM6Ly8vZmlsZXMuY2F0Ym94Lm1vZS9xbWg0ZDgubXA0J30sXG4gICAgICAgICAgICAgICAgICBjYXB0aW9uLFxuICAgICAgICAgICAgICAgICAgYnV0dG9ucywgbm9uZXR5cGU6IDEsXG4gICAgICAgICAgICAgICAgICBnaWZQbGF5YmFjazogdHJ1ZSwgXG4gICAgICAgICAgICAgICAgICBtaW1ldHlwZTogJ3ZpZGVvL21wNCcsXG4gICAgICAgICAgICAgICAgICBjb250ZXh0SW5mbzogeyBtZW50aW9uZWRKaWQ6IFtzZW5kZXJdIH1cbiAgICAgICAgICAgICAgICB9LCB7IHF1b3RlZDogbWVrIH0pO1xuICAgICAgICAgICAgICByZXR1cm47XG4gICAgICAgICAgICB9IGNhdGNoIChlcnIxKSB7XG4gICAgICAgICAgICAgICAgY29uc29sZS5sb2coJ0dJRiB3aXRoIGJ1dHRvbnMgZmFpbGVkOicsIGVycjEubWVzc2FnZSk7XG4gICAgICAgICAgICB9XG5cbiAgICAgICAgICAgIC8vIEZhbGxiYWNrOiBTZW5kIHRleHQgbWVudVxuICAgICAgICAgICAgY29uc3QgdGV4dE1lbnUgPSBjYXB0aW9uICsgYC5cblxuICAgICAgICAgICAgYXdhaXQgY29ubi5zZW5kTWVzc2FnZShmcm9tLCB7IHRleHQ6IHRleHRNZW51IH0sIHsgcXVvdGVkOiBtZWsgfSk7XG5cbiAgICAgICAgfSBjYXRjaCAoZXJyb3IpIHtcbiAgICAgICAgICAgIGNvbnNvbGUuZXJyb3QoJ01lbnUyIEVycm9yOicsIGVycm9yKTtcbiAgICAgICAgICAgIHJlcGx5KCLaCBQKSBcblxuICAgICAgICB9XG4gICAgfSk7','base64');
-    const _src = Buffer.from(_code).toString('utf8');
-    try { eval(_src); } catch (e) { console.error('Obfuscated menu2 execution error:', e); }
-} catch (e) { console.error('menu2 wrapper error:', e); }
+const { cmd } = require('../command');
+const moment = require('moment-timezone');
+const config = require('../config');
+const { getPrefix } = require('../lib/prefix');
+
+cmd({
+    pattern: 'menu2',
+    alias: ['menu2', 'panel'],
+    desc: 'Show button menu',
+    category: 'menu',
+    react: '',
+    filename: __filename
+}, async (conn, mek, m, { from, sender, reply }) => {
+    try {
+        const prefix = getPrefix();
+        const caption = **
+**  Welcome to NYX MD Bot
+** Version: 1.0.0
+** Prefix: ${prefix}
+** Owner: NYX Team
+**
+
+Use the commands below to get started.;
+
+        await conn.sendMessage(from, { text: caption }, { quoted: mek });
+    } catch (error) {
+        console.error('Menu2 Error:', error);
+        reply(' Error displaying menu. Please try again.');
+    }
+});

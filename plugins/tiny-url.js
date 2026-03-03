@@ -6,13 +6,6 @@ cmd({
     pattern: "tiny",
     alias: ['short', 'shorturl'],
     react: "🫧",
-    const { cmd } = require("../command");
-    const axios = require("axios");
-
-    cmd({
-        pattern: "tiny",
-        alias: ['short', 'shorturl'],
-    react: "🫧",
     desc: "Makes URL tiny.",
     category: "convert",
     use: "<url>",
