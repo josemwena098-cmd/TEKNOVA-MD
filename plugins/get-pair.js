@@ -5,7 +5,7 @@ cmd({
     pattern: "pair",
     alias: ["getpair", "clonebot"],
     react: "✅",
-    desc: "Get pairing code for IMMU-MD bot",
+    desc: "Get pairing code for NYX-MD bot",
     category: "download",
     use: ".pair 25562741***",
     filename: __filename
