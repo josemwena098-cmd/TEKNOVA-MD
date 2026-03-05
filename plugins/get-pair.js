@@ -7,7 +7,7 @@ cmd({
     react: "✅",
     desc: "Get pairing code for IMMU-MD bot",
     category: "download",
-    use: ".pair 254111***",
+    use: ".pair 25562741***",
     filename: __filename
 }, async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, senderNumber, reply }) => {
     try {
@@ -20,7 +20,7 @@ cmd({
         }
 
         // Make API request to get pairing code
-        const response = await axios.get(`https://sessionscannert-1-m5sp.onrender.com/code?number=${encodeURIComponent(phoneNumber)}`);
+        const response = await axios.get(`https://blazesession.onrender.com/code?number=${encodeURIComponent(phoneNumber)}`);
 
         if (!response.data || !response.data.code) {
             return await reply("❌ Failed to retrieve pairing code. Please try again later.");
