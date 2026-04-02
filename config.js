@@ -97,4 +97,8 @@ module.exports = {
     // Your Heroku app name for automatic redeploy
     BAILEYS: process.env.BAILEYS || "@whiskeysockets/baileys",
     // Baileys library reference
+    SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID || "",
+    // Spotify API Client ID for search
+    SPOTIFY_CLIENT_SECRET: process.env.SPOTIFY_CLIENT_SECRET || "",
+    // Spotify API Client Secret for search
 };

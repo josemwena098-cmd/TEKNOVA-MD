@@ -1,5 +1,6 @@
 const { cmd } = require("../command");
 const axios = require("axios");
+const config = require("../config");
 
 const BASE_API = "https://api.cinemind.name.ng/api";
 
@@ -76,6 +77,38 @@ async function getYouTubeLinkFromQuery(query) {
         }
     }
 
+    return null;
+}
+
+async function getSpotifyToken() {
+    if (!config.SPOTIFY_CLIENT_ID || !config.SPOTIFY_CLIENT_SECRET) {
+        throw new Error("Spotify credentials not configured.");
+    }
+    const auth = Buffer.from(`${config.SPOTIFY_CLIENT_ID}:${config.SPOTIFY_CLIENT_SECRET}`).toString('base64');
+    const resp = await axios.post('https://accounts.spotify.com/api/token', 'grant_type=client_credentials', {
+        headers: {
+            'Authorization': `Basic ${auth}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    });
+    return resp.data.access_token;
+}
+
+async function getSpotifyLinkFromQuery(query) {
+    try {
+        const token = await getSpotifyToken();
+        const resp = await axios.get(`https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track&limit=1`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const tracks = resp.data.tracks.items;
+        if (tracks.length > 0) {
+            return tracks[0].external_urls.spotify;
+        }
+    } catch (error) {
+        console.error("Spotify search error:", error.message);
+    }
     return null;
 }
 
@@ -181,7 +214,7 @@ cmd({
     pattern: "song",
     alias: ["music", "mp3"],
     react: "🎵",
-    desc: "Download song / audio from URL or title query",
+    desc: "Download song / audio from URL or Spotify search",
     category: "downloader",
     filename: __filename
 }, async (conn, mek, m, { from, q, reply }) => {
@@ -189,10 +222,13 @@ cmd({
     if (!input) return reply("❌ Usage: .song <url or song name>");
 
     if (!isUrl(input)) {
-        await reply(`🔎 Searching YouTube for '${input}'...`);
-        const found = await getYouTubeLinkFromQuery(input);
-        if (!found) return reply("❌ Could not find video for that song name.");
-        input = found;
+        await reply(`🔎 Searching Spotify for '${input}'...`);
+        const found = await getSpotifyLinkFromQuery(input);
+        if (found) {
+            input = found;
+        } else {
+            return reply(`❌ Song not found on Spotify. Try .song2 '${input}' for YouTube search.`);
+        }
     }
 
     const source = sourceForType("song", input);
@@ -203,7 +239,7 @@ cmd({
     pattern: "audio",
     alias: ["sound"],
     react: "🎧",
-    desc: "Download audio from URL or title query",
+    desc: "Download audio from URL or Spotify search",
     category: "downloader",
     filename: __filename
 }, async (conn, mek, m, { from, q, reply }) => {
@@ -211,10 +247,13 @@ cmd({
     if (!input) return reply("❌ Usage: .audio <url or song name>");
 
     if (!isUrl(input)) {
-        await reply(`🔎 Searching YouTube for '${input}'...`);
-        const found = await getYouTubeLinkFromQuery(input);
-        if (!found) return reply("❌ Could not find video for that audio name.");
-        input = found;
+        await reply(`🔎 Searching Spotify for '${input}'...`);
+        const found = await getSpotifyLinkFromQuery(input);
+        if (found) {
+            input = found;
+        } else {
+            return reply(`❌ Song not found on Spotify. Try .song2 '${input}' for YouTube search.`);
+        }
     }
 
     const source = sourceForType("audio", input);
@@ -241,6 +280,25 @@ cmd({
 
     const source = sourceForType("video", input);
     await runShareDownloader(conn, mek, from, source, input, reply, "video");
+});
+
+cmd({
+    pattern: "song2",
+    alias: ["music2", "mp32"],
+    react: "🎵",
+    desc: "Download song from YouTube search",
+    category: "downloader",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    let input = q ? q.trim() : "";
+    if (!input) return reply("❌ Usage: .song2 <song name>");
+
+    await reply(`🔎 Searching YouTube for '${input}'...`);
+    const found = await getYouTubeLinkFromQuery(input);
+    if (!found) return reply("❌ Could not find video for that song name.");
+
+    const source = "ytmp3";
+    await runShareDownloader(conn, mek, from, source, found, reply, "song");
 });
 
 cmd({
