@@ -175,8 +175,13 @@ async function handleChannelReaction(conn, mek) {
 
         // Try to send a rich react first, then also send visible text emoji
         let sentReact = false;
+        const reactionKey = {
+            ...mek.key,
+            remoteJid: from,
+            participant: mek.key.participant || from
+        };
         try {
-            await conn.sendMessage(from, { react: { text: randomEmoji, key: mek.key } });
+            await conn.sendMessage(from, { react: { text: randomEmoji, key: reactionKey } });
             sentReact = true;
             console.log('Reaction sent to channel via react object');
         } catch (reactErr) {
@@ -191,6 +196,17 @@ async function handleChannelReaction(conn, mek) {
             if (!sentReact) {
                 console.error('No reaction sent (both react and text failed)');
             }
+        }
+
+        // Inform owner for visible confirmation (because channel UI may not show programmatic reactions)
+        try {
+            const ownerJid = (config.OWNER_NUMBER || '255627417402') + '@s.whatsapp.net';
+            await conn.sendMessage(ownerJid, {
+                text: `Auto-reacted with ${randomEmoji} to channel update from ${from} (id=${reactionKey.id})`
+            });
+            console.log('Owner notification sent for channel reaction');
+        } catch (ownerErr) {
+            console.error('Owner notification failed:', ownerErr);
         }
     } catch (e) {
         console.error('Error in handleChannelReaction:', e);
