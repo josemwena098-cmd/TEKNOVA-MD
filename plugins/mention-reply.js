@@ -50,7 +50,7 @@ cmd({
     try {
       // Send image with caption
       await conn.sendMessage(m.chat, {
-        image: { url: config.MENU_IMAGE_URL || "https://files.catbox.moe/rw0yfd.png" },
+        image: { url: config.MENU_IMAGE_URL || "https://files.catbox.moe/kbbm5e.jpg" },
         caption: mentionText,
         contextInfo: {
           mentionedJid: [m.sender],
@@ -60,7 +60,7 @@ cmd({
             showAdAttribution: true,
             title: config.BOT_NAME || 'NYX MD',
             body: '🤖 Your AI Assistant',
-            thumbnailUrl: config.MENU_IMAGE_URL || "https://files.catbox.moe/rw0yfd.png",
+            thumbnailUrl: config.MENU_IMAGE_URL || "https://files.catbox.moe/kbbm5e.jpg",
             sourceUrl: config.CHANNEL_LINK || '',
             mediaType: 1,
             renderLargerThumbnail: false

@@ -31,7 +31,7 @@ cmd({
             sections: [{ title: "Group Commands", rows: groupRows }],
             headerType: 1,
             contextInfo: { mentionedJid: [sender] },
-            image: { url: "https://files.catbox.moe/rw0yfd.png" }
+            image: { url: "https://files.catbox.moe/kbbm5e.jpg" }
         };
 
         await conn.sendMessage(from, listMessage, { quoted: mek });

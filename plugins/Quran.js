@@ -55,7 +55,7 @@ ${translatedTafsirEnglish.text}`;
     await conn.sendMessage(
       from,
       {
-        image: { url: `https://files.catbox.moe/rw0yfd.png` },
+        image: { url: `https://files.catbox.moe/kbbm5e.jpg` },
         caption: quranSurah,
         contextInfo: {
           mentionedJid: [m.sender],
@@ -444,7 +444,7 @@ cmd({
       await conn.sendMessage(
         from,
         {
-          image: { url: `https://files.catbox.moe/rw0yfd.png` },
+          image: { url: `https://files.catbox.moe/kbbm5e.jpg` },
           caption: dec,
           contextInfo: {
             mentionedJid: [m.sender],

@@ -39,7 +39,7 @@ cmd({
             await conn.sendMessage(
                 from,
                 {
-                    image: { url: `https://files.catbox.moe/rw0yfd.png` }, // Replace with privacy-themed image if available
+                    image: { url: `https://files.catbox.moe/kbbm5e.jpg` }, // Replace with privacy-themed image if available
                     caption: privacyMenu,
                     contextInfo: {
                         mentionedJid: [m.sender],

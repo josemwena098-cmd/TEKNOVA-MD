@@ -57,7 +57,7 @@ cmd({
             // Fallback to image if video fails
             console.log('Video send failed, falling back to image:', videoErr.message);
             await conn.sendMessage(from, {
-                image: { url: "https://files.catbox.moe/rw0yfd.png" },
+                image: { url: "https://files.catbox.moe/kbbm5e.jpg" },
                 caption: menuText,
                 contextInfo: { mentionedJid: [sender] }
             }, { quoted: mek });

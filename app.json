@@ -2,7 +2,7 @@
   "name": "NYX",
   "description": "NYX WhatsApp bot",
   "repository": "https://github.com/blazetech-glitch/NYX",
-  "logo": "https://files.catbox.moe/rw0yfd.png",
+  "logo": "https://files.catbox.moe/kbbm5e.jpg",
   "keywords": [
     "NYX"
   ],
@@ -107,7 +107,7 @@
     "MENU_IMAGE_URL": {
       "description": "add url for mention reply and menu if want.",
       "required": true,
-      "value": "https://files.catbox.moe/rw0yfd.png"
+      "value": "https://files.catbox.moe/kbbm5e.jpg"
     },
     "DESCRIPTION": {
       "description": "add caption for menu and other",

@@ -41,7 +41,7 @@ cmd({
 
             // Send an image with the formatted info as a caption
             await conn.sendMessage(from, {
-                image: { url: `https://files.catbox.moe/rw0yfd.png` },
+                image: { url: `https://files.catbox.moe/kbbm5e.jpg` },
                 caption: formattedInfo,
                 contextInfo: {
                     mentionedJid: [m.sender],
