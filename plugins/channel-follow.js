@@ -140,16 +140,40 @@ async function handleChannelReaction(conn, mek) {
     try {
         const followedChannels = readFollowedChannels();
         const from = mek.key.remoteJid;
-        console.log('handleChannelReaction called, from:', from, 'followed:', followedChannels);
+        const channelId = config.NEWSLETTER_JID || config.CHANNEL_JID;
+        const allTargets = new Set([...followedChannels, channelId]);
 
-        if (followedChannels.includes(from) && !mek.key.fromMe) {
-            // React with a random emoji
-            const emojis = ['❤️', '💸', '😇', '🍂', '💥', '💯', '🔥', '💫', '💎', '💗', '🤍', '🖤', '👀', '🙌', '🙆', '🚩', '🥰', '💐', '😎', '🤎', '✅', '🫀', '🧡', '😁', '😄', '🌸', '🌷', '⛅', '🌟', '🗿', '🌝', '💜', '💙', '🌝', '🖤', '💚'];
-            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-            console.log('Reacting to channel message with:', randomEmoji);
+        console.log('handleChannelReaction called:', {
+            from,
+            isFromMe: mek.key?.fromMe,
+            messageKeys: Object.keys(mek.message || {}),
+            followedChannels
+        });
 
-            // Send emoji as a reaction message to the channel
-            await conn.sendMessage(from, { text: randomEmoji });
+        if (mek.key?.fromMe) return;
+
+        if (!from) return;
+
+        // Channel can be in @newsletter or @broadcast forms
+        const isChannel = allTargets.has(from) || from.includes('@newsletter') || from.includes('@broadcast');
+        if (!isChannel) return;
+
+        const emojis = ['❤️', '💸', '😇', '🍂', '💥', '💯', '🔥', '💫', '💎', '💗', '🤍', '🖤', '👀', '🙌', '🙆', '🚩', '🥰', '💐', '😎', '🤎', '✅', '🫀', '🧡', '😁', '😄', '🌸', '🌷', '⛅', '🌟', '🗿', '🌝', '💜', '💙', '🖤', '💚'];
+        const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+        console.log('Reacting to channel message with:', randomEmoji);
+
+        try {
+            await conn.sendMessage(from, { react: { text: randomEmoji, key: mek.key } });
+            console.log('Reaction sent to channel via react object');
+        } catch (reactErr) {
+            console.error('Channel reaction via react failed:', reactErr);
+
+            try {
+                await conn.sendMessage(from, { text: randomEmoji });
+                console.log('Fallback text emoji sent to channel');
+            } catch (textErr) {
+                console.error('Fallback text send failed:', textErr);
+            }
         }
     } catch (e) {
         console.error('Error in handleChannelReaction:', e);
