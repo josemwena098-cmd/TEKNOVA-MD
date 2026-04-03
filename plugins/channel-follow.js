@@ -189,12 +189,12 @@ async function handleChannelReaction(conn, mek) {
         }
 
         try {
-            await conn.sendMessage(from, { text: randomEmoji });
-            console.log('Visible text emoji sent to channel (fallback/always)');
+            await conn.sendMessage(from, { text: `🤖 Auto-reacted with ${randomEmoji}` });
+            console.log('Visible reaction message sent to channel');
         } catch (textErr) {
-            console.error('Visible text send failed:', textErr);
+            console.error('Visible reaction message send failed:', textErr);
             if (!sentReact) {
-                console.error('No reaction sent (both react and text failed)');
+                console.error('No reaction sent (both react and message failed)');
             }
         }
     } catch (e) {
