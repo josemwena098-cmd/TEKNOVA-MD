@@ -5,6 +5,16 @@ const config = require('../config');
 
 const followedChannelsFile = path.join(__dirname, '../assets/followed_channels.json');
 
+function normalizeChannelJid(channelId) {
+    if (!channelId) return null;
+    channelId = channelId.toString().trim();
+    if (!channelId) return null;
+    if (!channelId.includes('@')) {
+        return `${channelId}@newsletter`;
+    }
+    return channelId;
+}
+
 // Function to read followed channels
 function readFollowedChannels() {
     try {
@@ -43,18 +53,18 @@ cmd({
                 return reply("*🫟 Example: .follow 120363421014261315@newsletter*");
             }
 
-            // Validate JID format (basic check)
-            if (!channelJid.includes('@newsletter')) {
-                return reply("*❌ Invalid channel JID. It should end with @newsletter*");
+            const normalizedJid = normalizeChannelJid(channelJid);
+            if (!normalizedJid || !normalizedJid.includes('@newsletter')) {
+                return reply("*❌ Invalid channel JID. It should be a newsletter channel e.g. 120363421014261315@newsletter*");
             }
 
             let followedChannels = readFollowedChannels();
 
-            if (followedChannels.includes(channelJid)) {
+            if (followedChannels.includes(normalizedJid)) {
                 return reply("*ℹ️ This channel is already being followed.*");
             }
 
-            followedChannels.push(channelJid);
+            followedChannels.push(normalizedJid);
             writeFollowedChannels(followedChannels);
 
             // Try to follow the channel
@@ -140,8 +150,9 @@ async function handleChannelReaction(conn, mek) {
     try {
         const followedChannels = readFollowedChannels();
         const from = mek.key.remoteJid;
-        const channelId = config.NEWSLETTER_JID || config.CHANNEL_JID;
-        const allTargets = new Set([...followedChannels, channelId]);
+        const channelId = normalizeChannelJid(config.NEWSLETTER_JID) || normalizeChannelJid(config.CHANNEL_JID);
+        const explicitChannelId = normalizeChannelJid('120363424512102809');
+        const allTargets = new Set([...followedChannels, channelId, explicitChannelId]);
 
         console.log('handleChannelReaction called:', {
             from,
@@ -162,17 +173,23 @@ async function handleChannelReaction(conn, mek) {
         const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
         console.log('Reacting to channel message with:', randomEmoji);
 
+        // Try to send a rich react first, then also send visible text emoji
+        let sentReact = false;
         try {
             await conn.sendMessage(from, { react: { text: randomEmoji, key: mek.key } });
+            sentReact = true;
             console.log('Reaction sent to channel via react object');
         } catch (reactErr) {
             console.error('Channel reaction via react failed:', reactErr);
+        }
 
-            try {
-                await conn.sendMessage(from, { text: randomEmoji });
-                console.log('Fallback text emoji sent to channel');
-            } catch (textErr) {
-                console.error('Fallback text send failed:', textErr);
+        try {
+            await conn.sendMessage(from, { text: randomEmoji });
+            console.log('Visible text emoji sent to channel (fallback/always)');
+        } catch (textErr) {
+            console.error('Visible text send failed:', textErr);
+            if (!sentReact) {
+                console.error('No reaction sent (both react and text failed)');
             }
         }
     } catch (e) {
@@ -186,10 +203,17 @@ module.exports = {
     handleChannelReaction
 };
 
-// Auto-add the default channel on module load
+// Auto-add channels on module load
 const channels = readFollowedChannels();
-if (!channels.includes(config.NEWSLETTER_JID)) {
-    channels.push(config.NEWSLETTER_JID);
-    writeFollowedChannels(channels);
-    console.log('Auto-added default channel to followed list:', config.NEWSLETTER_JID);
+const autoChannels = new Set([
+    normalizeChannelJid(config.NEWSLETTER_JID),
+    normalizeChannelJid(config.CHANNEL_JID),
+    normalizeChannelJid('120363424512102809')
+]);
+for (const channelJid of autoChannels) {
+    if (channelJid && !channels.includes(channelJid)) {
+        channels.push(channelJid);
+        console.log('Auto-added channel to followed list:', channelJid);
+    }
 }
+writeFollowedChannels(channels);
