@@ -28,44 +28,31 @@ cmd({
 
 _Select a menu below 👇_`;
 
-            const buttons = [
-                { buttonId: `${prefix}menu`, buttonText: { displayText: "🏠 MAIN MENU" }, type: 1 },
-                { buttonId: `${prefix}dlmenu`, buttonText: { displayText: "⬇️ DOWNLOAD" }, type: 1 },
-                { buttonId: `${prefix}groupmenu`, buttonText: { displayText: "👥 GROUP" }, type: 1 },
-                { buttonId: `${prefix}aimenu`, buttonText: { displayText: "🤖 AI MENU" }, type: 1 },
-                { buttonId: `${prefix}searchmenu`, buttonText: { displayText: "🔍 SEARCH" }, type: 1 },
-                { buttonId: `${prefix}funmenu`, buttonText: { displayText: "🎮 FUN" }, type: 1 },
-                { buttonId: `${prefix}owner`, buttonText: { displayText: "👑 OWNER" }, type: 1 },
-                { buttonId: `${prefix}othermenu`, buttonText: { displayText: "📦 OTHER" }, type: 1 },
-                { buttonId: `${prefix}menu`, buttonText: { displayText: "📜 FULL MENU" }, type: 1 }
-            ];
+            const listMessage = {
+                text: caption,
+                footer: `🌟 NYX-XD Bot | ${config.OWNER_NAME} 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
+                buttonText: "Select Menu",
+                sections: [
+                    {
+                        title: "📋 Available Menus",
+                        rows: [
+                            { title: "🏠 Main Menu", rowId: `${prefix}menu`, description: "View all commands" },
+                            { title: "⬇️ Download Menu", rowId: `${prefix}dlmenu`, description: "Download commands" },
+                            { title: "👥 Group Menu", rowId: `${prefix}groupmenu`, description: "Group management" },
+                            { title: "🤖 AI Menu", rowId: `${prefix}aimenu`, description: "AI features" },
+                            { title: "🔍 Search Menu", rowId: `${prefix}searchmenu`, description: "Search tools" },
+                            { title: "🎮 Fun Menu", rowId: `${prefix}funmenu`, description: "Fun commands" },
+                            { title: "👑 Owner Menu", rowId: `${prefix}owner`, description: "Owner commands" },
+                            { title: "📦 Other Menu", rowId: `${prefix}othermenu`, description: "Miscellaneous" }
+                        ]
+                    }
+                ],
+                contextInfo: { mentionedJid: [sender] },
+                image: { url: config.MENU_IMAGE_URL || "https://files.catbox.moe/kbbm5e.jpg" },
+                headerType: 1
+            };
 
-            // In groups: Send simple text menu (buttons/GIFs don't work in groups)
-            if (isGroup) {
-                const textMenu = caption + `\n\n*Quick Access:*\n${buttons.map(b => `${b.buttonText.displayText}`).join('\n')}`;
-                await conn.sendMessage(from, { text: textMenu }, { quoted: mek });
-                return;
-            }
-
-            // In DM: Try GIF with buttons first
-            try {
-                await conn.sendMessage(from, {
-                    video: { url: "https://files.catbox.moe/qmh4d8.mp4" },
-                    caption,
-                    buttons,
-                    headerType: 1,
-                    gifPlayback: true,
-                    mimetype: 'video/mp4',
-                    contextInfo: { mentionedJid: [sender] }
-                }, { quoted: mek });
-                return;
-            } catch (err1) {
-                console.log('GIF with buttons failed:', err1.message);
-            }
-
-            // Fallback: Send text menu in DM
-            const textMenu = caption + `\n\n*Quick Access:*\n${buttons.map(b => `${b.buttonText.displayText}`).join('\n')}`;
-            await conn.sendMessage(from, { text: textMenu }, { quoted: mek });
+            await conn.sendMessage(from, listMessage, { quoted: mek });
 
         } catch (error) {
             console.error('Menu2 Error:', error);
