@@ -5,22 +5,12 @@ const axios = require("axios");
 const CHATGPT_API = "https://api.cinemind.name.ng/api/chatgpt";
 const API_KEY = "Godszeal";
 
+function cleanupResponse(text) {
+    return String(text || "").replace(/\r\n/g, "\n").trim();
+}
+
 // Store conversation history for each user
 const conversationHistory = new Map();
-
-// Function to clean promotional text from responses
-function cleanResponse(text) {
-    if (!text) return text;
-
-    // Remove Pollinations.AI ads and promotional content
-    let cleaned = text.replace(/\*Support Pollinations\.AI:[\s\S]*?Powered by Pollinations\.AI.*?\[Support our mission\].*?\)/gi, '');
-    cleaned = cleaned.replace(/---[\s\S]*?Pollinations\.AI/gi, '');
-    cleaned = cleaned.replace(/"source":\s*"pollinations"/gi, '');
-    cleaned = cleaned.replace(/"model":\s*"[^"]*"/gi, '');
-    cleaned = cleaned.replace(/\n\n+/g, '\n\n'); // Remove excessive newlines
-
-    return cleaned.trim();
-}
 
 cmd({
     pattern: "chatgpt",
@@ -31,23 +21,12 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, q, reply }) => {
     try {
-        // Get quoted message context if replying to an AI message
-        let quotedContext = "";
-        let fullMessage = q;
-
-        if (m.quoted) {
-            const quotedText = m.quoted.body || m.quoted.text || "";
-            if (quotedText) {
-                quotedContext = quotedText.substring(0, 200); // Get first 200 chars for context
-                fullMessage = `[Previous context: "${quotedContext}"]\n\nNew question: ${q}`;
-            }
-        }
-
+        if (mek.key?.fromMe) return;
         if (!q) {
             return reply(
                 "❌ *Please provide a question or prompt.*\n\n" +
                 "📝 *Example:* .chatgpt What is the capital of France?\n\n" +
-                "💡 *Tips:*\n• Reply to an AI message to continue the conversation\n• Use .resetai to clear history"
+                "💡 *Tip:* Use .aiinfo for more commands"
             );
         }
 
@@ -63,15 +42,15 @@ cmd({
         // Add user message to history
         history.push({ role: "user", content: q });
 
-        // Keep only last 15 messages to maintain context
-        if (history.length > 15) {
-            history = history.slice(-15);
+        // Keep only last 10 messages to avoid token limits
+        if (history.length > 10) {
+            history = history.slice(-10);
         }
 
-        // Call ChatGPT API with history
+        // Call ChatGPT API (POST method)
         const response = await axios.post(CHATGPT_API, {
             apikey: API_KEY,
-            message: fullMessage,
+            message: q,
             history: history
         }, {
             timeout: 60000,
@@ -99,14 +78,8 @@ cmd({
             }
         }
 
-        // Convert to string if needed
-        if (responseText && typeof responseText !== "string") {
-            responseText = JSON.stringify(responseText);
-        }
-
-        // Ensure responseText is a string and clean it
-        responseText = String(responseText || "").trim();
-        responseText = cleanResponse(responseText);
+        // Normalize response text
+        responseText = cleanupResponse(responseText);
 
         if (!responseText) {
             return reply("❌ *API returned empty response.*\nPlease try again later.");
@@ -116,24 +89,15 @@ cmd({
         history.push({ role: "assistant", content: responseText });
         conversationHistory.set(from, history);
 
-        // Format and send response with better spacing
-        const finalMessage = `
-╭────────────────────────────╮
-│  🤖 *CHATGPT RESPONSE*
-╰────────────────────────────╯
+        // Format and send response
+        const finalMessage = `╭─────〔 🤖 CHATGPT 〕─────◆
+💬 Question: ${cleanupResponse(q)}
 
-💬 *Your Question:*
-${q}
-
-🎯 *Answer:*
+🎯 Answer:
 ${responseText}
 
-╭────────────────────────────╮
-│  📌 *Tips:*
-│  • Reply to continue chat
-│  • Type .resetai to clear
-╰────────────────────────────╯
-      `.trim();
+╰────────────────────────────◆
+Tip: Use .resetai to clear the AI history.`;
 
         await conn.sendMessage(from, { text: finalMessage }, { quoted: mek });
 
@@ -175,6 +139,7 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, q, reply }) => {
     try {
+        if (mek.key?.fromMe) return;
         if (!q) {
             return reply(
                 "🚀 *Advanced AI Mode*\n\n" +
@@ -214,34 +179,13 @@ cmd({
             }
         }
 
-        // Convert to string if needed
-        if (responseText && typeof responseText !== "string") {
-            responseText = JSON.stringify(responseText);
-        }
-
-        // Ensure responseText is a string and clean
-        responseText = String(responseText || "").trim();
-        responseText = cleanResponse(responseText);
+        responseText = cleanupResponse(responseText);
 
         if (!responseText) {
             return reply("❌ *Failed to generate response.* Please try again.");
         }
 
-        const finalMessage = `
-╭────────────────────────────╮
-│  🚀 *ADVANCED AI MODE*
-╰────────────────────────────╯
-
-📝 *Your Query:*
-${detailedPrompt.substring(0, 100)}...
-
-🎯 *Detailed Response:*
-${responseText}
-
-╭────────────────────────────╮
-│  💡 Use .gpt for quick mode
-╰────────────────────────────╯
-      `.trim();
+        const finalMessage = `🚀 *ADVANCED AI RESPONSE*\n\n${responseText}\n\n━━━━━━━━━━━━━━\n💡 *Tip:* Use .gpt for faster responses`;
 
         await conn.sendMessage(from, { text: finalMessage }, { quoted: mek });
 
@@ -265,6 +209,7 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, q, reply }) => {
     try {
+        if (mek.key?.fromMe) return;
         if (!q) return reply("💬 *Quick AI*\n\nExample: .gpt What is AI?");
 
         await conn.sendPresenceUpdate('composing', from);
@@ -287,16 +232,9 @@ cmd({
             response.data?.data ||
             "No response generated";
 
-        // Convert to string if needed
-        if (responseText && typeof responseText !== "string") {
-            responseText = JSON.stringify(responseText);
-        }
+        responseText = cleanupResponse(responseText);
 
-        responseText = String(responseText).trim();
-        responseText = cleanResponse(responseText);
-
-        const quickResponse = `💬 *Quick AI Response*\n\n${responseText}`;
-        await reply(quickResponse);
+        await reply(`💬 *AI:* ${responseText}`);
 
     } catch (error) {
         console.error("Quick AI error:", error);
@@ -314,6 +252,7 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, q, reply }) => {
     try {
+        if (mek.key?.fromMe) return;
         if (!q) {
             return reply(
                 "✨ *Creative Content Generator*\n\n" +
@@ -346,29 +285,18 @@ cmd({
             response.data?.text ||
             response.data?.data;
 
-        // Convert to string if needed
-        if (responseText && typeof responseText !== "string") {
-            responseText = JSON.stringify(responseText);
-        }
-
-        responseText = String(responseText || "").trim();
-        responseText = cleanResponse(responseText);
+        responseText = cleanupResponse(responseText);
 
         if (!responseText) {
             return reply("❌ *Failed to generate content.* Please try again.");
         }
 
-        const finalMessage = `
-╭────────────────────────────╮
-│  ✨ *CREATIVE CONTENT*
-╰────────────────────────────╯
+        const finalMessage = `✨ CREATIVE CONTENT ✨
 
 ${responseText}
 
-╭────────────────────────────╮
-│  🎨 Generated by NYX AI Bot
-╰────────────────────────────╯
-        `.trim();
+━━━━━━━━━━━━━━
+Generated by AI | NYX Bot`;
 
         await conn.sendMessage(from, { text: finalMessage }, { quoted: mek });
 
@@ -464,6 +392,7 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, reply, q }) => {
     try {
+        if (mek.key?.fromMe) return;
         const quotedMsg = m.quoted;
 
         if (!quotedMsg) {
@@ -511,39 +440,20 @@ cmd({
         let responseText = response.data?.response ||
             response.data?.result ||
             response.data?.message ||
-            response.data?.reply ||
-            response.data?.text ||
-            response.data?.data;
-
-        // Convert to string if needed
-        if (responseText && typeof responseText !== "string") {
-            responseText = JSON.stringify(responseText);
-        }
-
-        responseText = String(responseText || "").trim();
-        responseText = cleanResponse(responseText);
+            response.data?.reply;
 
         if (!responseText) {
             return reply("❌ *Failed to analyze message.* Please try again.");
         }
 
         const formattedResponse = `
-╭────────────────────────────╮
-│  💭 *AI ANALYSIS*
-╰────────────────────────────╯
+💭 *AI RESPONSE*
 
-📝 *Context:*
-"${quotedText.substring(0, 100)}${quotedText.length > 100 ? '...' : ''}"
+📝 *Context:* "${quotedText.substring(0, 100)}${quotedText.length > 100 ? '...' : ''}"
 
-❓ *Question:*
-${question}
+❓ *Question:* ${question}
 
-🎯 *Analysis:*
-${responseText}
-
-╭────────────────────────────╮
-│  ✅ Analysis Complete
-╰────────────────────────────╯
+🤖 *Answer:* ${responseText}
         `.trim();
 
         await reply(formattedResponse);
