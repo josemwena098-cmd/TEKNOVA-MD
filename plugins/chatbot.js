@@ -17,6 +17,28 @@ const userLastActivity = new Map();
 const REPLY_INTERVAL = 10000;
 const HISTORY_RETENTION_MS = 72 * 60 * 60 * 1000; // 72 hours
 
+// Helper function to check if message is from the bot itself
+function isFromBot(mek, conn) {
+    if (!mek || !conn) return false;
+    
+    // Check if message is marked as from bot
+    if (mek.key?.fromMe) return true;
+    
+    // Get bot's JID
+    const botJid = conn.user?.id;
+    if (!botJid) return false;
+    
+    // Get sender's JID from the message
+    const senderJid = mek.key?.participant || mek.key?.remoteJid;
+    if (!senderJid) return false;
+    
+    // Normalize and compare JIDs
+    const botNumber = botJid.split(':')[0].split('@')[0];
+    const senderNumber = senderJid.split(':')[0].split('@')[0];
+    
+    return botNumber === senderNumber;
+}
+
 // Load history from file
 function loadHistory() {
     try {
@@ -139,6 +161,9 @@ cmd({
 
 // Auto-reply handler
 async function handleChatbotMessage(conn, mek, m, { from, sender, body }) {
+    // Don't respond to bot's own messages
+    if (mek.key?.fromMe || isFromBot(mek, conn)) return;
+    
     const user = sender.split('@')[0];
     const isGroup = from.endsWith('@g.us');
 

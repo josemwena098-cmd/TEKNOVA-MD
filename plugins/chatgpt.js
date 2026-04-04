@@ -16,6 +16,28 @@ function cleanupResponse(text) {
 // Store conversation history for each user
 const conversationHistory = new Map();
 
+// Helper function to check if message is from the bot itself
+function isFromBot(mek, conn) {
+    if (!mek || !conn) return false;
+    
+    // Check if message is marked as from bot
+    if (mek.key?.fromMe) return true;
+    
+    // Get bot's JID
+    const botJid = conn.user?.id;
+    if (!botJid) return false;
+    
+    // Get sender's JID from the message
+    const senderJid = mek.key?.participant || mek.key?.remoteJid;
+    if (!senderJid) return false;
+    
+    // Normalize and compare JIDs
+    const botNumber = botJid.split(':')[0].split('@')[0];
+    const senderNumber = senderJid.split(':')[0].split('@')[0];
+    
+    return botNumber === senderNumber;
+}
+
 cmd({
     pattern: "chatgpt",
     alias: ["gpt", "ask", "ai"],
@@ -25,7 +47,8 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, q, reply }) => {
     try {
-        if (mek.key?.fromMe) return;
+        // Don't respond to bot's own messages
+        if (mek.key?.fromMe || isFromBot(mek, conn)) return;
         if (!q) {
             return reply(
                 "❌ *Please provide a question or prompt.*\n\n" +
@@ -152,7 +175,8 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, q, reply }) => {
     try {
-        if (mek.key?.fromMe) return;
+        // Don't respond to bot's own messages
+        if (mek.key?.fromMe || isFromBot(mek, conn)) return;
         if (!q) {
             return reply(
                 "🚀 *Advanced AI Mode*\n\n" +
@@ -232,7 +256,8 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, q, reply }) => {
     try {
-        if (mek.key?.fromMe) return;
+        // Don't respond to bot's own messages
+        if (mek.key?.fromMe || isFromBot(mek, conn)) return;
         if (!q) return reply("💬 *Quick AI*\n\nExample: .gpt What is AI?");
 
         await conn.sendPresenceUpdate('composing', from);
@@ -288,7 +313,8 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, q, reply }) => {
     try {
-        if (mek.key?.fromMe) return;
+        // Don't respond to bot's own messages
+        if (mek.key?.fromMe || isFromBot(mek, conn)) return;
         if (!q) {
             return reply(
                 "✨ *Creative Content Generator*\n\n" +
@@ -442,7 +468,8 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, reply, q }) => {
     try {
-        if (mek.key?.fromMe) return;
+        // Don't respond to bot's own messages
+        if (mek.key?.fromMe || isFromBot(mek, conn)) return;
         const quotedMsg = m.quoted;
 
         if (!quotedMsg) {
