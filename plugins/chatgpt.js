@@ -6,9 +6,23 @@ const CHATGPT_API = "https://api.cinemind.name.ng/api/chatgpt";
 const API_KEY = "Godszeal";
 
 function cleanupResponse(text) {
-    // If text is an object, stringify it first
+    // If text is an object, extract response property if it exists
     if (typeof text === "object" && text !== null) {
-        text = JSON.stringify(text);
+        // Try to extract readable text from common response properties
+        if (text.response && typeof text.response === "string") {
+            text = text.response;
+        } else if (text.message && typeof text.message === "string") {
+            text = text.message;
+        } else if (text.text && typeof text.text === "string") {
+            text = text.text;
+        } else if (text.result && typeof text.result === "string") {
+            text = text.result;
+        } else if (text.answer && typeof text.answer === "string") {
+            text = text.answer;
+        } else {
+            // As last resort, stringify but avoid showing raw JSON to user
+            text = ""; 
+        }
     }
     return String(text || "").replace(/\r\n/g, "\n").trim();
 }
@@ -98,23 +112,9 @@ cmd({
                 response.data.text ||
                 response.data.answer ||
                 response.data.data;
-
-            // If the extracted value is an object, stringify it
-            if (typeof responseText === "object" && responseText !== null) {
-                responseText = JSON.stringify(responseText);
-            }
-
-            // If no specific field found or it's empty, try stringifying the entire response
-            if (!responseText) {
-                if (typeof response.data === "string") {
-                    responseText = response.data;
-                } else {
-                    responseText = JSON.stringify(response.data);
-                }
-            }
         }
-
-        // Normalize response text
+        
+        // Clean and normalize the response
         responseText = cleanupResponse(responseText);
 
         if (!responseText) {
@@ -125,15 +125,20 @@ cmd({
         history.push({ role: "assistant", content: responseText });
         conversationHistory.set(from, history);
 
-        // Format and send response
-        const finalMessage = `╭─────〔 🤖 CHATGPT 〕─────◆
-💬 Question: ${cleanupResponse(q)}
+        // Format and send response with better design
+        const finalMessage = `╭─────────────────────────────◆
+│  🤖 *CHATGPT RESPONSE*
+╰─────────────────────────────◆
 
-🎯 Answer:
+❓ *Your Question:*
+${cleanupResponse(q)}
+
+✅ *AI Response:*
 ${responseText}
 
-╰────────────────────────────◆
-Tip: Use .resetai to clear the AI history.`;
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 *Tip:* Use .resetai to clear conversation history
+✨ Powered by AI | NYX Bot`;
 
         await conn.sendMessage(from, { text: finalMessage }, { quoted: mek });
 
@@ -210,20 +215,6 @@ cmd({
                 response.data.reply ||
                 response.data.text ||
                 response.data.data;
-
-            // If the extracted value is an object, stringify it
-            if (typeof responseText === "object" && responseText !== null) {
-                responseText = JSON.stringify(responseText);
-            }
-
-            // If no specific field found, try stringifying the entire response
-            if (!responseText) {
-                if (typeof response.data === "string") {
-                    responseText = response.data;
-                } else {
-                    responseText = JSON.stringify(response.data);
-                }
-            }
         }
 
         responseText = cleanupResponse(responseText);
@@ -279,23 +270,9 @@ cmd({
             response.data?.text ||
             response.data?.data;
 
-        // If the extracted value is an object, stringify it
-        if (typeof responseText === "object" && responseText !== null) {
-            responseText = JSON.stringify(responseText);
-        }
-
-        // If no specific field found or it's empty, try stringifying the entire response
-        if (!responseText) {
-            if (typeof response.data === "string") {
-                responseText = response.data;
-            } else {
-                responseText = JSON.stringify(response.data);
-            }
-        }
-
         responseText = cleanupResponse(responseText);
 
-        await reply(`💬 *AI:* ${responseText}`);
+        await reply(`💬 *AI Response:*\n\n${responseText}`);
 
     } catch (error) {
         console.error("Quick AI error:", error);
@@ -347,32 +324,20 @@ cmd({
             response.data?.text ||
             response.data?.data;
 
-        // If the extracted value is an object, stringify it
-        if (typeof responseText === "object" && responseText !== null) {
-            responseText = JSON.stringify(responseText);
-        }
-
-        // If no specific field found or it's empty, try stringifying the entire response
-        if (!responseText) {
-            if (typeof response.data === "string") {
-                responseText = response.data;
-            } else {
-                responseText = JSON.stringify(response.data);
-            }
-        }
-
         responseText = cleanupResponse(responseText);
 
         if (!responseText) {
             return reply("❌ *Failed to generate content.* Please try again.");
         }
 
-        const finalMessage = `✨ CREATIVE CONTENT ✨
+        const finalMessage = `╭──────────────────────────◆
+│  ✨ CREATIVE CONTENT
+╰──────────────────────────◆
 
 ${responseText}
 
-━━━━━━━━━━━━━━
-Generated by AI | NYX Bot`;
+━━━━━━━━━━━━━━━━━━━━━━━━━
+✨ Generated by AI | NYX Bot`;
 
         await conn.sendMessage(from, { text: finalMessage }, { quoted: mek });
 
@@ -517,21 +482,11 @@ cmd({
         let responseText = response.data?.response ||
             response.data?.result ||
             response.data?.message ||
-            response.data?.reply;
+            response.data?.reply ||
+            response.data?.text ||
+            response.data?.data;
 
-        // If the extracted value is an object, stringify it
-        if (typeof responseText === "object" && responseText !== null) {
-            responseText = JSON.stringify(responseText);
-        }
-
-        // If no specific field found or it's empty, try stringifying the entire response
-        if (!responseText) {
-            if (typeof response.data === "string") {
-                responseText = response.data;
-            } else {
-                responseText = JSON.stringify(response.data);
-            }
-        }
+        responseText = cleanupResponse(responseText);
 
         if (!responseText) {
             return reply("❌ *Failed to analyze message.* Please try again.");
