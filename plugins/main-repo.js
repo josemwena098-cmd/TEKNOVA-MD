@@ -34,7 +34,7 @@ cmd({
 *┃* *👑 Owner:* BLAZE TEAM
 *┃* *⭐ Stars:* ${repoData.stargazers_count}
 *┃* *⑂ Forks:* ${repoData.forks_count}
-*┃* *📝 Description:* ${repoData.description || '*World Best WhatsApp Bot powered by NYX MD*'}
+*┃* *📝 Description:* ${repoData.description || '*World Best WhatsApp Bot powered by TEKNOVA MD*'}
 *┃* *🔗 GitHub Link:* ${repoData.html_url}
 *┗──────────────⊷*
 `.trim();
@@ -49,7 +49,7 @@ cmd({
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363424512102809@newsletter',
-                        newsletterName: 'NYX MD',
+                        newsletterName: 'TEKNOVA MD',
                         serverMessageId: 143
                     }
                 }

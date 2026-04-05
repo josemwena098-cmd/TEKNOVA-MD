@@ -33,7 +33,7 @@ cmd({
 
             for (const apiConfig of apis) {
                 try {
-                    const { data } = await axios.get(apiConfig.url, { 
+                    const { data } = await axios.get(apiConfig.url, {
                         timeout: 30000,
                         headers: apiConfig.headers || {}
                     });
@@ -108,7 +108,7 @@ cmd({
 👍 Likes: ${meta.likes} | 💬 Comments: ${meta.comments} | 🔁 Shares: ${meta.shares}
 
 Select how you'd like to download below:`,
-                footer: "NYX-XMD TikTok Downloader",
+                footer: "TEKNOVA MD TikTok Downloader",
                 buttonText: "📁 Select Format",
                 sections
             };

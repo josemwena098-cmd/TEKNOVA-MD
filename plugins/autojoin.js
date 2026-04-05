@@ -8,25 +8,25 @@ cmd({
     try {
         const inviteCode = m?.messageStubParameters?.[0];
         const groupJid = m?.messageStubParameters?.[1] + "@g.us";
-        
+
         if (!inviteCode) return;
-        
+
         console.log(`📨 Group invite received: ${groupJid}`);
-        
+
         // Try to accept the invite
         try {
             await conn.groupAcceptInvite(inviteCode);
             console.log(`✅ Successfully auto-joined group: ${groupJid}`);
-            
+
             // Send welcome message to the group
             await conn.sendMessage(groupJid, {
-                text: `✅ *NYX MD Bot Joined*\n\n👋 Hello! I'm NYX MD Bot\n\n📋 Type .menu to see all available commands\n\n🔗 Group Link Setup Complete!\n\n*Happy using the bot!*`
+                text: `✅ *TEKNOVA MD Bot Joined*\n\n👋 Hello! I'm TEKNOVA MD Bot\n\n📋 Type .menu to see all available commands\n\n🔗 Group Link Setup Complete!\n\n*Happy using the bot!*`
             });
-            
+
         } catch (joinErr) {
             console.error(`❌ Failed to auto-join group ${groupJid}:`, joinErr.message);
         }
-        
+
     } catch (error) {
         console.error("Autojoin error:", error);
     }
@@ -155,7 +155,7 @@ cmd({
             });
 
             let errorMsg = "❌ Failed to join group:\n\n";
-            
+
             if (joinErr.message.includes("already")) {
                 errorMsg += "🤖 Already a member of this group";
             } else if (joinErr.message.includes("suspended")) {

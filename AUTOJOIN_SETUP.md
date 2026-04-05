@@ -1,7 +1,7 @@
-# 🤖 Auto-Join NYX Group - Integration Guide
+# 🤖 Auto-Join TEKNOVA Group - Integration Guide
 
 ## Overview
-The autojoiner module (`lib/autojoin.js`) handles automatic joining of your NYX WhatsApp group when the bot connects.
+The autojoiner module (`lib/autojoin.js`) handles automatic joining of your TEKNOVA WhatsApp group when the bot connects.
 
 ## How to Integrate
 
@@ -16,7 +16,7 @@ const autoJoin = require('./lib/autojoin');
 if (connection === 'open') {
     // ... existing code ...
     
-    // Auto-join NYX group
+    // Auto-join TEKNOVA group
     await autoJoin.initAutoJoin(conn, console);
     
     // ... rest of code ...
@@ -53,7 +53,7 @@ env:
 
 ## Features
 
-✅ Automatically joins your NYX group when bot connects  
+✅ Automatically joins your TEKNOVA group when bot connects  
 ✅ Sends welcome message to the group  
 ✅ Handles various error scenarios gracefully  
 ✅ Checks if already a member (no errors)  
@@ -72,13 +72,13 @@ env:
 const success = await autoJoin.initAutoJoin(conn);
 ```
 
-### 2. `isInNYXGroup(conn)`
+### 2. `isInTEKNOVAGroup(conn)`
 - **Description:** Check if bot is in any group
 - **Parameters:** `conn` - WhatsApp connection instance
 - **Returns:** Boolean
 
 ```javascript
-const inGroup = await autoJoin.isInNYXGroup(conn);
+const inGroup = await autoJoin.isInTEKNOVAGroup(conn);
 ```
 
 ### 3. `forceRejoin(conn)`
@@ -125,8 +125,8 @@ You can also manually join groups:
 ## Logs
 
 Check console for autojoin status:
-- ✅ `Successfully joined NYX group from GROUP_LINK`
-- ℹ️ `Already a member of the NYX group`
+- ✅ `Successfully joined TEKNOVA group from GROUP_LINK`
+- ℹ️ `Already a member of the TEKNOVA group`
 - ⚠️ `Invalid GROUP_LINK format`
 - ❌ `Failed to join` (with reason)
 

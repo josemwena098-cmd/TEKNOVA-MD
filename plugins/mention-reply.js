@@ -35,7 +35,7 @@ cmd({
 ║        👋 *MENTION RECEIVED* 👋        ║
 ╚════════════════════════════════╝
 
-✨ **${config.BOT_NAME || 'NYX MD'}** is here! 
+✨ **${config.BOT_NAME || 'TEKNOVA MD'}** is here! 
 
 🎯 I'm listening and ready to help you.
 
@@ -58,7 +58,7 @@ cmd({
           isForwarded: true,
           externalAdReply: {
             showAdAttribution: true,
-            title: config.BOT_NAME || 'NYX MD',
+            title: config.BOT_NAME || 'TEKNOVA MD',
             body: '🤖 Your AI Assistant',
             thumbnailUrl: config.MENU_IMAGE_URL || "https://files.catbox.moe/kbbm5e.jpg",
             sourceUrl: config.CHANNEL_LINK || '',
@@ -76,14 +76,14 @@ cmd({
         audio: { url: "https://files.catbox.moe/lu3f94.mp3" },
         mimetype: 'audio/mpeg',
         ptt: false,
-        fileName: `${config.BOT_NAME || 'NYX'}-notification.mp3`
+        fileName: `${config.BOT_NAME || 'TEKNOVA'}-notification.mp3`
       }, { quoted: m });
 
     } catch (sendError) {
       console.error('Error sending mention reply:', sendError.message);
       // Fallback: send text only
       await conn.sendMessage(m.chat, {
-        text: `👋 *${config.BOT_NAME || 'NYX MD'} is here!*\n\n🎯 I'm listening and ready to help.\nUse *.menu* for commands!`
+        text: `👋 *${config.BOT_NAME || 'TEKNOVA MD'} is here!*\n\n🎯 I'm listening and ready to help.\nUse *.menu* for commands!`
       }, { quoted: m });
     }
 

@@ -30,7 +30,7 @@ cmd({
 │
 ╰─❒ *${config.OWNER_NAME}* ❒─╯
 
-> *Powered by NYX MD* ✨`;
+> *Powered by TEKNOVA MD* ✨`;
 
             await conn.sendMessage(from, {
                 image: { url: config.MENU_IMAGE_URL },

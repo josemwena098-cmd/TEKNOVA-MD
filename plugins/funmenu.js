@@ -26,7 +26,7 @@ cmd({
 
         const listMessage = {
             text: "*🎮 FUN MENU*\n\nSelect a command below:",
-            footer: `🌟 NYX-XD Bot | Blaze Tech 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
+            footer: `🌟 TEKNOVA MD Bot | Blaze Tech 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
             buttonText: "Open Fun Menu",
             sections: [{ title: "Fun Commands", rows: funRows }],
             headerType: 1,

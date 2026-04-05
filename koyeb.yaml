@@ -1,6 +1,6 @@
-name: nyx-md
+name: teknova-md
 services:
-  - name: nyx-md-service
+  - name: teknova-md-service
     type: web
     ports:
       - 5000

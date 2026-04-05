@@ -286,7 +286,7 @@ cmd({
     }
 
     // Send the retrieved media with caption
-    const caption = '🔓 *Retrieved by NYX MD*\n_No secrets here_ 🔍';
+    const caption = '🔓 *Retrieved by TEKNOVA MD*\n_No secrets here_ 🔍';
 
     if (mediaType === 'image') {
       await conn.sendMessage(from, {

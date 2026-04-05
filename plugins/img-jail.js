@@ -77,7 +77,7 @@ cmd({
 
     await conn.sendMessage(m.chat, {
       image: imageBuffer,
-      caption: `> *powered by NYX*`
+      caption: `> *powered by TEKNOVA*`
     });
 
   } catch (error) {

@@ -24,7 +24,7 @@ cmd({
             const cpu = os.cpus()[0].model;
 
             const status = `╔═════════════════════════╗
-║    ✨ *${config.BOT_NAME || 'NYX MD'}* ✨    ║
+║    ✨ *${config.BOT_NAME || 'TEKNOVA MD'}* ✨    ║
 ║   🤖 STATUS: ALIVE...🧚‍♂️   ║
 ╚═════════════════════════╝
 

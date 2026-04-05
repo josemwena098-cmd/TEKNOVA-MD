@@ -1,16 +1,16 @@
 {
-  "name": "nyx-md",
+  "name": "teknova-md",
   "version": "3.0.0",
-  "description": "NYX WhatsApp Bot",
+  "description": "TEKNOVA MD WhatsApp Bot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "stop": "pm2 stop NYX-XTR",
-    "restart": "pm2 restart NYX-XTR"
+    "stop": "pm2 stop TEKNOVA-MD",
+    "restart": "pm2 restart TEKNOVA-MD"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/blazetech-glitch/NYX"
+    "url": "https://github.com/josemwena098-cmd/TEKNOVA-MD"
   },
   "engines": {
     "node": ">=20"

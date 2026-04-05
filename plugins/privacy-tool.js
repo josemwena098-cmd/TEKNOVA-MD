@@ -15,7 +15,7 @@ cmd({
 },
     async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isCreator, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
         try {
-            let privacyMenu = `*┏────〘 NYX 〙───⊷*
+            let privacyMenu = `*┏────〘 TEKNOVA 〙───⊷*
 *┃* • blocklist - View blocked users
 *┃* • getbio - Get user's bio
 *┃* • setppall - Set profile pic privacy
@@ -47,7 +47,7 @@ cmd({
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
                             newsletterJid: '120363424512102809@newsletter',
-                            newsletterName: "NYX MD",
+                            newsletterName: "TEKNOVA MD",
                             serverMessageId: 143
                         }
                     }

@@ -1,10 +1,10 @@
 {
-  "name": "NYX",
-  "description": "NYX WhatsApp bot",
-  "repository": "https://github.com/blazetech-glitch/NYX",
-  "logo": "https://files.catbox.moe/kbbm5e.jpg",
+  "name": "TEKNOVA MD",
+  "description": "TEKNOVA MD WhatsApp bot",
+  "repository": "https://github.com/josemwena098-cmd/TEKNOVA-MD",
+  "logo": "https://files.catbox.moe/o6ju4a.image",
   "keywords": [
-    "NYX"
+    "TEKNOVA"
   ],
   "success_url": "/",
   "stack": "container",
@@ -17,7 +17,7 @@
     "STICKER_NAME": {
       "description": "type your sticker pack name.",
       "required": true,
-      "value": "NYX-XTR"
+      "value": "TEKNOVA-MD"
     },
     "PREFIX": {
       "description": "paste your bot prefix note! Don't apply null prefix.",
@@ -67,7 +67,7 @@
     "AUTO_STATUS_MSG": {
       "description": "Type custom message on status reply",
       "required": true,
-      "value": ".𝗦𝗘𝗘𝗡 𝗬𝗢𝗨𝗥 𝗦𝗧𝗔𝗧𝗨𝗦 𝗕𝗬 𝗡𝗬𝗫 𝗫𝗧𝗥🔄"
+      "value": ".𝗦𝗘𝗘𝗡 𝗬𝗢𝗨𝗥 𝗦𝗧𝗔𝗧𝗨𝗦 𝗕𝗬 �𝗘𝗞𝗡𝗢𝗩𝗔 𝗠𝗗🔄"
     },
     "OWNER_NAME": {
       "description": "Type Bot Owner Name.",
@@ -77,12 +77,12 @@
     "OWNER_NUMBER": {
       "description": "put the owner number for bot.",
       "required": false,
-      "value": "255627417402"
+      "value": "255611378027"
     },
     "BOT_NAME": {
       "description": "Type here the bot name.",
       "required": true,
-      "value": "NYX MD"
+      "value": "TEKNOVA MD"
     },
     "ANTI_LINK": {
       "description": "Make it true if you want bot auto remove group link.",
@@ -107,7 +107,7 @@
     "MENU_IMAGE_URL": {
       "description": "add url for mention reply and menu if want.",
       "required": true,
-      "value": "https://files.catbox.moe/kbbm5e.jpg"
+      "value": "https://files.catbox.moe/o6ju4a.image"
     },
     "DESCRIPTION": {
       "description": "add caption for menu and other",

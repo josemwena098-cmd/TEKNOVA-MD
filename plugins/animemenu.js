@@ -19,7 +19,7 @@ cmd({
 
         const listMessage = {
             text: "*🍥 ANIME MENU*\n\nSelect a command below:",
-            footer: `🌟 NYX-XD Bot | Blaze Tech 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
+            footer: `🌟 TEKNOVA MD Bot | Blaze Tech 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
             buttonText: "Open Anime Menu",
             sections: [{ title: "Anime Commands", rows: animeRows }],
             headerType: 1,

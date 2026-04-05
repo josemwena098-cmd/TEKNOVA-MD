@@ -56,7 +56,7 @@ ${truncatedCode}
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363424512102809@newsletter',
-                        newsletterName: 'NYX MD',
+                        newsletterName: 'TEKNOVA MD',
                         serverMessageId: 143
                     }
                 }
