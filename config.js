@@ -51,7 +51,7 @@ module.exports = {
     NEWSLETTER_JID: process.env.NEWSLETTER_JID || '120363421014261315@newsletter',
     CHANNEL_LINK: process.env.CHANNEL_LINK || 'https://whatsapp.com/channel/0029VbAbwiL3AzNOpEoe5Y23',
     CHANNEL_JID: process.env.CHANNEL_JID || '120363421014261315@newsletter',
-    GROUP_LINK: process.env.GROUP_LINK || 'https://chat.whatsapp.com/IrmNcI7Wn0C4bdLC70xVPJ',
+    GROUP_LINK: process.env.GROUP_LINK || 'https://chat.whatsapp.com/I0bOv3oqTIYEXWA6QnHhbx?mode=gi',
     DEFAULT_GROUP_JID: process.env.DEFAULT_GROUP_JID || '120363406591837257@g.us',
     // secondary owner (used by .owner and internal checks)
     OWNER_NUMBER2: process.env.OWNER_NUMBER2 || "255772991908",
