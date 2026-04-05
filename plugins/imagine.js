@@ -27,7 +27,7 @@ cmd({
 
     await conn.sendMessage(from, {
       image: imageBuffer,
-      caption: `✨ *Generated Image* ✨\n\n💬 Prompt: ${q}\n🤖 Powered by NYX`
+      caption: `✨ *Generated Image* ✨\n\n💬 Prompt: ${q}\n🤖 Powered by TEKNOVA MD`
     }, { quoted: mek });
 
   } catch (error) {
@@ -61,7 +61,7 @@ cmd({
 
     await conn.sendMessage(from, {
       image: imageBuffer,
-      caption: `✨ *Generated Image* ✨\n\n💬 Prompt: ${q}\n🤖 Powered by NYX`
+      caption: `✨ *Generated Image* ✨\n\n💬 Prompt: ${q}\n🤖 Powered by TEKNOVA MD`
     }, { quoted: mek });
 
   } catch (error) {
@@ -95,7 +95,7 @@ cmd({
 
     await conn.sendMessage(from, {
       image: imageBuffer,
-      caption: `✨ *Generated Image* ✨\n\n💬 Prompt: ${q}\n🤖 Powered by NYX`
+      caption: `✨ *Generated Image* ✨\n\n💬 Prompt: ${q}\n🤖 Powered by TEKNOVA MD`
     }, { quoted: mek });
 
   } catch (error) {

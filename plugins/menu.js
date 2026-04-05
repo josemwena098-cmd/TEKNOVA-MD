@@ -67,7 +67,7 @@ cmd({
 │ 🔑 Prefix: 「 ${config.PREFIX} 」
 │ 👑 Owner: ${config.OWNER_NAME}
 │ 🧩 Plugins: ${commands.length}
-│ 🛠️  Developer: BLAZE TECH
+│ 🛠️  Developer: BLAZE NOVA
 │ 📅 ${time} • ${date}
 ╰─────────────────────────────────╯`;
 
@@ -95,7 +95,7 @@ cmd({
 
     menu += `\n\n╔════════════════════════════════╗
 ║   🌟 ${config.DESCRIPTION || toUpperStylized('Explore the power of TEKNOVA MD')} 🌟   ║
-╚════════════════════════════════╝\n\n*📱 Need help?*\n🔗 Group: ${config.GROUP_LINK ? '[Join](' + config.GROUP_LINK + ')' : 'Not Set'}\n📢 Channel: ${config.CHANNEL_LINK ? '[Follow](' + config.CHANNEL_LINK + ')' : 'Not Set'}\n\n*Made with ❤️ by BLAZE TECH* | *v3.0.0*`;
+╚════════════════════════════════╝\n\n*📱 Need help?*\n🔗 Group: ${config.GROUP_LINK ? '[Join](' + config.GROUP_LINK + ')' : 'Not Set'}\n📢 Channel: ${config.CHANNEL_LINK ? '[Follow](' + config.CHANNEL_LINK + ')' : 'Not Set'}\n\n*Made with ❤️ by BLAZE NOVA* | *v3.0.0*`;
 
     // Context info
     const imageContextInfo = {

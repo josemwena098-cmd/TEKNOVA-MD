@@ -39,7 +39,7 @@ cmd({
 │ ⚙️ CPU: ${cpu.substring(0, 30)}...
 ├─────────────────────────────┤
 
-*> Made with ❤️ by BLAZE TECH*`;
+*> Made with ❤️ by BLAZE NOVA*`;
 
             const buttons = [
                 {

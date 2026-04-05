@@ -16,7 +16,7 @@ cmd({
     filename: __filename,
 },
     async (conn, mek, m, { from, reply }) => {
-        const githubRepoURL = 'https://github.com/blazetech-glitch/NYX';
+        const githubRepoURL = 'https://github.com/josemwena098-cmd/TEKNOVA-MD';
 
         try {
             // Extract username and repo name from the URL
@@ -29,7 +29,7 @@ cmd({
 
             // Format the repository information in new stylish format
             const formattedInfo = `
-*┏────〘 *NYX* 〙───⊷*
+*┏────〘 *TEKNOVA MD* 〙───⊷*
 *┃* *📌 Repository Name:* ${repoData.name}
 *┃* *👑 Owner:* BLAZE TEAM
 *┃* *⭐ Stars:* ${repoData.stargazers_count}

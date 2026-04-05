@@ -24,7 +24,7 @@ cmd({
 
         const listMessage = {
             text: "*🤖 AI MENU*\n\nSelect a command below:",
-            footer: `🌟 TEKNOVA MD Bot | Blaze Tech 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
+            footer: `🌟 TEKNOVA MD Bot | Blaze Nova 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
             buttonText: "Open AI Menu",
             sections: [{ title: "AI Commands", rows: aiRows }],
             headerType: 1,

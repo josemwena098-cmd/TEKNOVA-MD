@@ -112,7 +112,7 @@
     "DESCRIPTION": {
       "description": "add caption for menu and other",
       "required": true,
-      "value": "*© NYX MD bot*"
+      "value": "*© TEKNOVA MD bot*"
     },
     "DELETE_LINKS": {
       "description": "remove links from group automatically without removing member",

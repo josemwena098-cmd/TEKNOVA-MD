@@ -23,7 +23,7 @@ cmd({
 
         const listMessage = {
             text: "*✨ REACTION MENU*\n\nSelect a command below:",
-            footer: `🌟 TEKNOVA MD Bot | Blaze Tech 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
+            footer: `🌟 TEKNOVA MD Bot | Blaze Nova 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
             buttonText: "Open Reaction Menu",
             sections: [{ title: "Reaction Commands", rows: reactRows }],
             headerType: 1,
