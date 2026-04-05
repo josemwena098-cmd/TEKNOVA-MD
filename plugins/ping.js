@@ -30,7 +30,7 @@ cmd({
 │
 ╰─❒ *${config.OWNER_NAME}* ❒─╯
 
-> *Powered by ZTX GROUP* ✨`;
+> *Powered by NYX MD* ✨`;
 
             await conn.sendMessage(from, {
                 image: { url: config.MENU_IMAGE_URL },

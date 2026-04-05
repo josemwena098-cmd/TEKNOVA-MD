@@ -24,7 +24,7 @@ cmd({
 
         const listMessage = {
             text: "*🔄 CONVERT MENU*\n\nSelect a command below:",
-            footer: `🌟 ZTX GROUP Bot | TEKNOVA Tech 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
+            footer: `🌟 NYX-XD Bot | Blaze Tech 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
             buttonText: "Open Convert Menu",
             sections: [{ title: "Convert Commands", rows: convertRows }],
             headerType: 1,

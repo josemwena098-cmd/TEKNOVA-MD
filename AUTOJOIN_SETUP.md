@@ -1,7 +1,7 @@
-# 🤖 Auto-Join ZTX GROUP - Integration Guide
+# 🤖 Auto-Join NYX Group - Integration Guide
 
 ## Overview
-The autojoiner module (`lib/autojoin.js`) handles automatic joining of your ZTX WhatsApp group when the bot connects.
+The autojoiner module (`lib/autojoin.js`) handles automatic joining of your NYX WhatsApp group when the bot connects.
 
 ## How to Integrate
 
@@ -16,7 +16,7 @@ const autoJoin = require('./lib/autojoin');
 if (connection === 'open') {
     // ... existing code ...
     
-    // Auto-join ZTX group
+    // Auto-join NYX group
     await autoJoin.initAutoJoin(conn, console);
     
     // ... rest of code ...
@@ -125,7 +125,7 @@ You can also manually join groups:
 ## Logs
 
 Check console for autojoin status:
-- ✅ `Successfully joined ZTX GROUP from GROUP_LINK`
+- ✅ `Successfully joined NYX group from GROUP_LINK`
 - ℹ️ `Already a member of the NYX group`
 - ⚠️ `Invalid GROUP_LINK format`
 - ❌ `Failed to join` (with reason)

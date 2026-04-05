@@ -19,7 +19,7 @@ cmd({
             const date = moment().format('DD/MM/YYYY');
 
             const caption = `╔══════════════════════╗
-   ✨ *ZTX GROUP MENU PANEL* ✨
+   ✨ *NYX-XD MENU PANEL* ✨
 ╚══════════════════════╝
 
 👤 User: @${sender.split("@")[0]}
@@ -30,7 +30,7 @@ _Select a menu below 👇_`;
 
             const listMessage = {
                 text: caption,
-                footer: `🌟 ZTX GROUP Bot | ${config.OWNER_NAME} 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
+                footer: `🌟 NYX-XD Bot | ${config.OWNER_NAME} 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
                 buttonText: "Select Menu",
                 sections: [
                     {

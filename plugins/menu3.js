@@ -17,7 +17,7 @@ cmd({
         const time = moment().tz(config.TIMEZONE || 'Africa/Nairobi').format('HH:mm:ss');
         const date = moment().format('DD/MM/YYYY');
 
-        const menuText = `╭─❒ *ZTX GROUP COMPACT MENU* ❒─╮
+        const menuText = `╭─❒ *NYX MD COMPACT MENU* ❒─╮
 │
 ├─ 👤 *User:* @${sender.split("@")[0]}
 ├─ ⏱️ *Uptime:* ${runtime(process.uptime())}

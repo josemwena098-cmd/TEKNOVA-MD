@@ -24,7 +24,7 @@ cmd({
             const cpu = os.cpus()[0].model;
 
             const status = `╔═════════════════════════╗
-║    ✨ *${config.BOT_NAME || 'ZTX GROUP'}* ✨    ║
+║    ✨ *${config.BOT_NAME || 'NYX MD'}* ✨    ║
 ║   🤖 STATUS: ALIVE...🧚‍♂️   ║
 ╚═════════════════════════╝
 
@@ -39,7 +39,7 @@ cmd({
 │ ⚙️ CPU: ${cpu.substring(0, 30)}...
 ├─────────────────────────────┤
 
-*> Made with ❤️ by TEKNOVA TECH*`;
+*> Made with ❤️ by BLAZE TECH*`;
 
             const buttons = [
                 {

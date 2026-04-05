@@ -8,14 +8,14 @@
       <stop offset="100%" stop-color="#0b0b16"/>
     </linearGradient>
 
-    <!-- ZTX GROUP gradient -->
+    <!-- NYX gradient -->
     <linearGradient id="nyxGrad" x1="0" x2="1">
       <stop offset="0%" stop-color="#8A2BE2"/>
       <stop offset="50%" stop-color="#00FFFF"/>
       <stop offset="100%" stop-color="#8A2BE2"/>
     </linearGradient>
 
-    <!-- TEKNOVA flame gradient -->
+    <!-- Blaze flame gradient -->
     <linearGradient id="flameGrad" x1="0" x2="0" y1="0" y2="1">
       <stop offset="0%" stop-color="#ff00ff"/>
       <stop offset="50%" stop-color="#8A2BE2"/>
@@ -42,7 +42,7 @@
   </g>
 
   <!-- ================= -->
-  <!-- TEKNOVA Tech Logo  -->
+  <!-- Blaze Tech Logo  -->
   <!-- ================= -->
 
   <!-- Flame shape -->
@@ -54,13 +54,13 @@
         fill="url(#flameGrad)"
         filter="url(#glow)"/>
 
-  <!-- TEKNOVA text -->
+  <!-- Blaze text -->
   <text x="140" y="230"
         text-anchor="middle"
         font-size="18"
         font-family="Verdana"
         fill="#00FFFF">
-    TEKNOVA TECH
+    BLAZE TECH
   </text>
 
   <!-- ================= -->
@@ -74,7 +74,7 @@
         font-weight="bold"
         fill="url(#nyxGrad)"
         filter="url(#glow)">
-    ZTX GROUP 
+    NYX MD
   </text>
 
   <text x="50%" y="62%"
@@ -89,7 +89,7 @@
         text-anchor="middle"
         font-size="20"
         fill="#00FFFF">
-    👨‍💻 Developer: TEKNOVA TECH
+    👨‍💻 Developer: BLAZE TECH
   </text>
 
   <text x="50%" y="90%"

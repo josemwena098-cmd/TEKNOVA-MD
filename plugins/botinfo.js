@@ -30,7 +30,7 @@ cmd({
 ╭─────────────────────────────╮
 │ 📋 *DETAILS*
 ├─────────────────────────────┤
-│ 🏷️  Name: *${config.BOT_NAME || pkg.name || 'ZTX GROUP'}*
+│ 🏷️  Name: *${config.BOT_NAME || pkg.name || 'NYX MD'}*
 │ 👑 Owner: *${config.OWNER_NAME || 'Owner'}*
 │ 🔑 Prefix: *${config.PREFIX || '.'}*
 │ 📦 Version: *${pkg.version || '3.0.0'}*

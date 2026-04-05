@@ -1,6 +1,6 @@
-name: ztx group 
+name: nyx-md
 services:
-  - name: ztx -service
+  - name: nyx-md-service
     type: web
     ports:
       - 5000

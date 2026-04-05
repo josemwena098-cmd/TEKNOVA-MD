@@ -1,16 +1,16 @@
 {
-  "name": "ztx-group",
+  "name": "nyx-md",
   "version": "3.0.0",
-  "description": "ZTX WhatsApp Bot",
+  "description": "NYX WhatsApp Bot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "stop": "pm2 stop ZTX-XTR",
-    "restart": "pm2 restart ZTX-XTR"
+    "stop": "pm2 stop NYX-XTR",
+    "restart": "pm2 restart NYX-XTR"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/blazetech-glitch/ZTX"
+    "url": "https://github.com/blazetech-glitch/NYX"
   },
   "engines": {
     "node": ">=20"
