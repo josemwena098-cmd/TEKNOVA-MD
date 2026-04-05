@@ -35,7 +35,7 @@ cmd({
 ║        👋 *MENTION RECEIVED* 👋        ║
 ╚════════════════════════════════╝
 
-✨ **${config.BOT_NAME || 'NYX MD'}** is here! 
+✨ **${config.BOT_NAME || 'ZTX GROUP'}** is here! 
 
 🎯 I'm listening and ready to help you.
 
@@ -45,7 +45,7 @@ cmd({
 │ 🔗 ${config.GROUP_LINK ? config.GROUP_LINK : 'Join our community'}
 ╰─────────────────────────────────╯
 
-*Made with ❤️ by ${config.OWNER_NAME || 'BLAZE TEAM'}*`;
+*Made with ❤️ by ${config.OWNER_NAME || 'TEKNOVA TEAM'}*`;
 
     try {
       // Send image with caption
@@ -58,7 +58,7 @@ cmd({
           isForwarded: true,
           externalAdReply: {
             showAdAttribution: true,
-            title: config.BOT_NAME || 'NYX MD',
+            title: config.BOT_NAME || 'ZTX GROUP',
             body: '🤖 Your AI Assistant',
             thumbnailUrl: config.MENU_IMAGE_URL || "https://files.catbox.moe/kbbm5e.jpg",
             sourceUrl: config.CHANNEL_LINK || '',
@@ -83,7 +83,7 @@ cmd({
       console.error('Error sending mention reply:', sendError.message);
       // Fallback: send text only
       await conn.sendMessage(m.chat, {
-        text: `👋 *${config.BOT_NAME || 'NYX MD'} is here!*\n\n🎯 I'm listening and ready to help.\nUse *.menu* for commands!`
+        text: `👋 *${config.BOT_NAME || 'ZTX GROUP'} is here!*\n\n🎯 I'm listening and ready to help.\nUse *.menu* for commands!`
       }, { quoted: m });
     }
 
