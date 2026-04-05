@@ -1,0 +1,51 @@
+services:
+  - type: web
+    name: teknova-md-bot
+    env: docker
+    dockerfilePath: Dockerfile
+    region: ohio
+    plan: free
+    numInstances: 1
+    autoDeploy: true
+    
+    startCommand: npm start
+    
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: KEEPALIVE_URL
+        value: https://render.com
+      - key: SESSION_ID
+        fromSecret: SESSION_ID
+      - key: PREFIX
+        value: "."
+      - key: BOT_NAME
+        value: TEKNOVA MD
+      - key: OWNER_NUMBER
+        value: "255611378027"
+      - key: OWNER_NAME
+        value: BLAZE NOVA
+      - key: MODE
+        value: public
+      - key: AUTO_REPLY
+        value: "false"
+      - key: ALWAYS_ONLINE
+        value: "false"
+      - key: AUTO_STATUS_REPLY
+        value: "true"
+      - key: AUTO_STATUS_SEEN
+        value: "true"
+      - key: AUTO_STATUS_REACT
+        value: "false"
+      - key: AUTO_REACT
+        value: "false"
+      - key: SILENT
+        value: "false"
+      - key: MENU_IMAGE_URL
+        value: "https://files.catbox.moe/o6ju4a.image"
+      - key: CHANNEL_LINK
+        value: "https://whatsapp.com/channel/0029VbAbwiL3AzNOpEoe5Y23"
+      - key: README_RENDER
+        value: "https://github.com/josemwena098-cmd/TEKNOVA-MD"

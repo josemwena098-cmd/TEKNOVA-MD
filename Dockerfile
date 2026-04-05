@@ -1,16 +1,33 @@
-FROM node:lts-buster
+FROM node:20-bullseye
 
-# Clone bot from GitHub
-RUN git clone https://github.com/josemwena098-cmd/TEKNOVA-MD.git /root/teknova-bot
+# Install system dependencies (FFmpeg required for media handling)
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
-WORKDIR /root/teknova-bot
+WORKDIR /app
 
-# Install dependencies
-RUN npm install && npm install -g pm2
+# Copy repository files into the image
+COPY . /app
+
+# Install Node dependencies
+RUN npm install --production
+
+# Create sessions directory
+RUN mkdir -p /app/sessions
 
 # Expose port
-EXPOSE 9090
+EXPOSE 10000
 
-# Start the bot
-CMD ["npm", "start"]
+# Set Node environment
+ENV NODE_ENV=production
+
+# Health check for Render
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:${PORT:-10000}/ || exit 1
+
+# Start bot
+CMD ["node", "index.js"]
