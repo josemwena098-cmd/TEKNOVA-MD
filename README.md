@@ -11,9 +11,9 @@
 
 [![Node.js](https://img.shields.io/badge/Node.js-%3E=20-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-3.0.0-8A2BE2?style=for-the-badge)](https://github.com/blazetech-glitch/NYX/releases)
-[![Contributors](https://img.shields.io/badge/Contributors-Welcome-success?style=for-the-badge)](https://github.com/blazetech-glitch/NYX/graphs/contributors)
-[![GitHub Stars](https://img.shields.io/github/stars/blazetech-glitch/NYX?style=for-the-badge&color=yellow)](https://github.com/blazetech-glitch/NYX)
+[![Version](https://img.shields.io/badge/Version-3.0.0-8A2BE2?style=for-the-badge)](https://github.com/blazetech-glitch/ZTX GROUP/releases)
+[![Contributors](https://img.shields.io/badge/Contributors-Welcome-success?style=for-the-badge)](https://github.com/blazetech-glitch/ZTX GROUP/graphs/contributors)
+[![GitHub Stars](https://img.shields.io/github/stars/blazetech-glitch/NYX?style=for-the-badge&color=yellow)](https://github.com/blazetech-glitch/ZTX GROUP)
 
 ## Feature Highlights
 
