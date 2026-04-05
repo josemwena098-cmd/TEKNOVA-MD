@@ -100,4 +100,4 @@ cmd({
 });
 
 module.exports = {};</content >
-    <parameter name="filePath">c:\Users\T20\Documents\GitHub\NYX\plugins\antimention.js
+    <parameter name="filePath">c:\Users\T20\Documents\GitHub\ZTX GROUP\plugins\antimention.js
