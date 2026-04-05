@@ -25,7 +25,7 @@ cmd({
 
         const listMessage = {
             text: "*📁 OTHER MENU*\n\nSelect a command below:",
-            footer: `🌟 NYX-XD Bot | Blaze Tech 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
+            footer: `🌟 ZTX GROUP Bot | TEKNOVA Tech 🌟\n👤 User: @${sender.split('@')[0]}\n📅 ${time} • ${date}`,
             buttonText: "Open Other Menu",
             sections: [{ title: "Other Commands", rows: otherRows }],
             headerType: 1,
