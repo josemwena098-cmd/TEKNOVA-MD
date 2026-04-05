@@ -5,7 +5,7 @@ function convertToBool(text, fault = 'true') {
     return text === fault ? true : false;
 }
 module.exports = {
-    SESSION_ID: process.env.SESSION_ID || "BLAZE~PYEDCCpK#bW17UmXpYbHUcfAzJL9dUcfkP4LVVO8WekRXbfBv2eM",
+    SESSION_ID: process.env.SESSION_ID || "TEKNOVA~PYEDCCpK#bW17UmXpYbHUcfAzJL9dUcfkP4LVVO8WekRXbfBv2eM",
     // add your Session Id
     AUTO_STATUS_SEEN: process.env.AUTO_STATUS_SEEN || "true",
     // make true or false status auto seen
@@ -24,9 +24,9 @@ module.exports = {
     // add custom menu and mention reply image url
     PREFIX: process.env.PREFIX || ".",
     // add your prifix for bot
-    BOT_NAME: process.env.BOT_NAME || "NYX MD",
+    BOT_NAME: process.env.BOT_NAME || "ZTX GROUP",
     // add bot namw here for menu
-    STICKER_NAME: process.env.STICKER_NAME || "NYX-MD",
+    STICKER_NAME: process.env.STICKER_NAME || "ZTX GROUP",
     // type sticker pack name
     CUSTOM_REACT: process.env.CUSTOM_REACT || "false",
     // make this true for custum emoji react
@@ -36,25 +36,25 @@ module.exports = {
     // automatic delete links without removing member
     ANTI_LINK_ACTION: process.env.ANTI_LINK_ACTION || "delete_warn",
     // actions for anti-link: delete_warn (default), delete_only, delete_kick
-    OWNER_NUMBER: process.env.OWNER_NUMBER || "255627417402",
+    OWNER_NUMBER: process.env.OWNER_NUMBER || "255611378027",
     // add your bot owner number
     // add your bot owner number
-    OWNER_NAME: process.env.OWNER_NAME || "BLAZE TEAM",
+    OWNER_NAME: process.env.OWNER_NAME || "TEKNOVA TEAM",
     // add bot owner name
-    DESCRIPTION: process.env.DESCRIPTION || "© NYX MD bot",
+    DESCRIPTION: process.env.DESCRIPTION || "© ZTX GROUP bot",
     // add bot owner name
     ALIVE_IMG: process.env.ALIVE_IMG || "https://files.catbox.moe/kbbm5e.jpg",
     // add img for alive msg
-    LIVE_MSG: process.env.LIVE_MSG || ">NYX MD IS ALIVE😍",
+    LIVE_MSG: process.env.LIVE_MSG || ">ZTX GROUP IS ALIVE😍",
     // add alive msg here
     // Newsletter and links
     NEWSLETTER_JID: process.env.NEWSLETTER_JID || '120363421014261315@newsletter',
-    CHANNEL_LINK: process.env.CHANNEL_LINK || 'https://whatsapp.com/channel/0029VbC49Bb2P59togOaEF2E',
+    CHANNEL_LINK: process.env.CHANNEL_LINK || 'https://whatsapp.com/channel/0029VbAbwiL3AzNOpEoe5Y23',
     CHANNEL_JID: process.env.CHANNEL_JID || '120363421014261315@newsletter',
     GROUP_LINK: process.env.GROUP_LINK || 'https://chat.whatsapp.com/IrmNcI7Wn0C4bdLC70xVPJ',
     DEFAULT_GROUP_JID: process.env.DEFAULT_GROUP_JID || '120363406591837257@g.us',
     // secondary owner (used by .owner and internal checks)
-    OWNER_NUMBER2: process.env.OWNER_NUMBER2 || "255754206718",
+    OWNER_NUMBER2: process.env.OWNER_NUMBER2 || "255772991908",
     READ_MESSAGE: process.env.READ_MESSAGE || "false",
     // Turn true or false for automatic read msgs
     AUTO_REACT: process.env.AUTO_REACT || "false",
@@ -79,7 +79,7 @@ module.exports = {
     // true for automatic show typing
     READ_CMD: process.env.READ_CMD || "false",
     // true if want mark commands as read
-    DEV: process.env.DEV || "255627417402",
+    DEV: process.env.DEV || "255611378027",
     //replace with your whatsapp number
     ANTI_VV: process.env.ANTI_VV || "true",
     // true for anti once view
